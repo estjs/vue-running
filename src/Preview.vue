@@ -52,7 +52,7 @@ function setIframe() {
   const iframeDocument = iframe.value.contentWindow.document;
   const stylesTags: string[] = []
 
-  if (globalProp) {
+  if (globalProp && globalProp.depLibs && globalProp.depLibs.length > 0) {
     globalProp.depLibs.forEach((lib) => {
 
       if (lib.type === 'css') {

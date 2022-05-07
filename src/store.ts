@@ -1,6 +1,11 @@
 import { reactive, watchEffect } from 'vue';
 import { compileFile } from './transform';
-
+export interface depLibsType {
+  name: string; // ui library name
+  url?: string; // url to library
+  code?: string; // code to import
+  type: 'js' | 'css'; // js or css. 
+}
 const welcomeCode = `
 <script setup>
 import { ref } from 'vue'

@@ -16,15 +16,9 @@ import { provide } from 'vue';
 import SplitPane from './SplitPane.vue';
 import Editor from './Editor.vue';
 import Preview from './Preview.vue';
+import type { depLibsType } from './store';
 import { replStore } from './store';
-interface depLibsType {
-  name: string; // ui library name
-  url?: string; // url to library
-  code?: string; // code to import
-  type: 'js' | 'css'; // js or css. 
-}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface globalProps {
   readonly?: boolean;
   depLibs?: Array<depLibsType>;

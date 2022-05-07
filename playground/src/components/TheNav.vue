@@ -8,7 +8,7 @@ import { isDark, toggleDark } from '~/composables'
 
     <div flex-auto />
 
-    <div flex="~ gap4" items-center>
+    <div flex="~ gap4 " items-center>
       <button class="icon-btn !outline-none p1" @click="toggleDebug()">
         <div i-carbon-debug />
       </button>
@@ -32,7 +32,7 @@ import { isDark, toggleDark } from '~/composables'
         class="icon-btn"
         i-carbon-logo-github
         rel="noreferrer"
-        href="https://github.com/"
+        href="https://github.com/estjs/vue-running"
         target="_blank"
         title="GitHub"
       />

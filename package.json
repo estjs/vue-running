@@ -55,7 +55,7 @@
     "@vitejs/plugin-vue": "^2.3.2",
     "bumpp": "^7.1.1",
     "codemirror": "^5.65.3",
-    "pnpm": "^6.32.6",
+    "pnpm": "^6.32.11",
     "rimraf": "^3.0.2",
     "rollup-plugin-esbuild": "^4.9.1",
     "rollup-plugin-postcss": "^4.0.2",
@@ -64,7 +64,7 @@
     "sucrase": "^3.21.0",
     "typescript": "^4.6.4",
     "vite": "^2.9.8",
-    "vitest": "^0.9.3",
+    "vitest": "^0.9.4",
     "vue": "^3.2.33",
     "vue-tsc": "^0.29.8"
   },
@@ -75,8 +75,5 @@
         "./dist/vue-running.d.ts"
       ]
     }
-  },
-  "dependencies": {
-    "vue-running": "workspace:^0.0.1"
   }
 }

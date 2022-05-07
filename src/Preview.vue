@@ -2,8 +2,7 @@
   <div class="iframe-container">
     <iframe
       ref="iframe"
-      sandbox="allow-modals allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"
-      scrolling="yes"
+      sandbox="allow-modals allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts" scrolling="yes"
       frameborder="0"
     />
   </div>
@@ -14,26 +13,32 @@ import type { Ref } from 'vue';
 import { inject, onMounted, ref, watch } from 'vue';
 import type { Store } from './store';
 
+// @see https://github.com/vuejs/core/issues/4294
+interface depLibsType {
+  name: string; // ui library name
+  url?: string; // url to library
+  code?: string; // code to import
+  type: 'js' | 'css'; // js or css. 
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface globalProps {
+  readonly?: boolean;
+  depLibs?: Array<depLibsType>;
+  layout?: 'horizontal' | 'vertical';
+}
+
 const defineImport = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js';
 const defineDep: { [key in string]: string } = {
   vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
 };
-interface globalProps {
-  store?: Store;
-  readonly?: boolean;
-  autoResize?: boolean;
-  clearConsole?: boolean;
-  depLibs?: { name: string; url: string }[];
-  depCss: string[];
-  layout?: 'horizontal' | 'vertical';
-}
 
 const store = inject<Store>('store');
 
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
-onMounted(()=>setIframe());
+onMounted(() => setIframe());
 
 watch(
   () => store!.state.file.compiled.js,
@@ -45,11 +50,31 @@ watch(
 function setIframe() {
   if (!iframe.value || !iframe.value.contentWindow) { return; }
   const iframeDocument = iframe.value.contentWindow.document;
-  const stylesTags = globalProp?.depCss.map((style: string) => `<link rel='stylesheet' href='${style}' />`);
-  
-  globalProp?.depLibs?.forEach((lib) => {
-    defineDep[lib.name] = lib.url;
-  });
+  const stylesTags: string[] = []
+
+  if (globalProp) {
+    globalProp.depLibs.forEach((lib) => {
+
+      if (lib.type === 'css') {
+        if (lib.url) {
+          stylesTags.push(`<link rel="stylesheet" href="${lib.url}">`)
+        } else if ( lib.code) {
+          stylesTags.push(`<style>${lib.code}<\/style>`)
+        }
+      }
+      if (lib.type === 'js') {
+        if ( lib.url) {
+          defineDep[lib.name] = lib.url;
+        } else if ( lib.code) {
+          const blob = new Blob([
+            lib.code
+          ], { type: 'text/javascript' });
+          const blobUrl = URL.createObjectURL(blob);
+          defineDep[lib.name] = blobUrl;
+        }
+      }
+    })
+  }
 
   const html = `
           <!DOCTYPE html>

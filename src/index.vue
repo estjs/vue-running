@@ -16,38 +16,33 @@ import { provide } from 'vue';
 import SplitPane from './SplitPane.vue';
 import Editor from './Editor.vue';
 import Preview from './Preview.vue';
-import type { Store } from './store';
 import { replStore } from './store';
+interface depLibsType {
+  name: string; // ui library name
+  url?: string; // url to library
+  code?: string; // code to import
+  type: 'js' | 'css'; // js or css. 
+}
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface globalProps {
-  store?: Store;
   readonly?: boolean;
-  autoResize?: boolean;
-  clearConsole?: boolean;
-  depLibs?: { name: string; url: string }[];
-  depCss?: string[];
-  position: 'right' | 'left';
+  depLibs?: Array<depLibsType>;
   layout?: 'horizontal' | 'vertical';
 }
 
 const props = withDefaults(defineProps<globalProps>(), {
-  store: () => new replStore(),
-  autoResize: true,
-  showImportMap: true,
-  clearConsole: true,
+  readonly: false,
   layout: 'horizontal',
-  position: 'right',
-  depLibs: () => [
-    {
-      name: 'element-plus',
-      url: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.4/dist/index.full.mjs',
-    },
+  depLibs: ()=>[
+
   ],
-  depCss: () => ['https://unpkg.com/element-plus/dist/index.css'],
-});
+} );
+
+const store = new replStore();
 
 provide('globalProps', props);
-provide('store', props.store);
+provide('store', store);
 </script>
 
 <style scoped>

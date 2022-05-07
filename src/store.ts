@@ -4,6 +4,7 @@ import { compileFile } from './transform';
 const welcomeCode = `
 <script setup>
 import { ref } from 'vue'
+import {EButton} from "eurus-ui"
 import {ElButton} from "element-plus"
 const msg = ref('Hello World!')
 
@@ -16,6 +17,7 @@ const handleClick = () => {
   <h1>{{ msg }}</h1>
   <input v-model="msg">
   <br>
+  <e-button @click="handleClick">你瞅啥</e-button>
   <el-button @click="handleClick">你瞅啥</el-button>
 </template>
 
@@ -38,7 +40,6 @@ export class File {
     this.code = code;
   }
 }
-
 export interface StoreState {
   file: File;
   errors: (string | Error)[];

@@ -41,8 +41,8 @@ depLibs.push(...[{
   type: 'js',
 },
 {
-  name: 'element-plus_css',
-  url: 'https://unpkg.com/element-plus/dist/index.css',
+  name: '',
+  url: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.4/dist/index.css',
   type: 'css',
 }])
 </script>

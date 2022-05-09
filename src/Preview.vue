@@ -11,17 +11,8 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
 import { inject, onMounted, ref, watch } from 'vue';
-import type { Store } from './store';
+import type { depLibsType, Store } from './store';
 
-// @see https://github.com/vuejs/core/issues/4294
-interface depLibsType {
-  name: string; // ui library name
-  url?: string; // url to library
-  code?: string; // code to import
-  type: 'js' | 'css'; // js or css. 
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface globalProps {
   readonly?: boolean;
   depLibs?: Array<depLibsType>;

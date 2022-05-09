@@ -13,6 +13,7 @@
 
 <script lang="ts" setup>
 import { provide } from 'vue';
+import type { EditorConfiguration } from 'codemirror';
 import SplitPane from './SplitPane.vue';
 import Editor from './Editor.vue';
 import Preview from './Preview.vue';
@@ -20,17 +21,15 @@ import type { depLibsType } from './store';
 import { replStore } from './store';
 
 interface globalProps {
-  readonly?: boolean;
+  codeMirrorOption?: EditorConfiguration;
   depLibs?: Array<depLibsType>;
   layout?: 'horizontal' | 'vertical';
 }
 
 const props = withDefaults(defineProps<globalProps>(), {
-  readonly: false,
+  codeMirrorOption: ()=>{ return {} },
   layout: 'horizontal',
-  depLibs: ()=>[
-
-  ],
+  depLibs: ()=>[],
 } );
 
 const store = new replStore();

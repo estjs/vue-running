@@ -4,6 +4,7 @@
 </template>
 
 <script setup lang="ts">
+import type { EditorConfiguration } from 'codemirror';
 import { onMounted, ref, watchEffect } from 'vue';
 import { debounce } from '../utils';
 import CodeMirror, { codemirrorOption } from './codemirror';
@@ -11,7 +12,7 @@ import CodeMirror, { codemirrorOption } from './codemirror';
 interface Props {
   mode?: string;
   value?: string;
-  readonly?: boolean;
+  codeMirrorOption?: EditorConfiguration;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -28,9 +29,9 @@ const needAutoResize = true;
 onMounted(() => {
   const editor = CodeMirror(el.value!, {
     ...codemirrorOption,
+    ...props.codeMirrorOption,
     ...{
       value: '',
-      readOnly: props.readonly,
       lineWrapping: true,
     },
   });

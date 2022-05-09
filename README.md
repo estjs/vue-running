@@ -1,16 +1,53 @@
-# Vue 3 + Typescript + Vite
+# running  Vue3 file online
+>This project fork from [vuejs/repl](https://github.com/vuejs/repl).
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+<h3 align='center'>
+<a href="https://vue-running.netlify.app/">Live Demo</a>
+</h3>
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+<p align='center'>
+<b>English</b> | <a href="https://github.com/estjs/vue-running/blob/main/README.zh-CN.md">简体中文</a>
+<!-- Contributors: Thanks for geting interested, however we DON'T accept new transitions to the README, thanks. -->
+</p>
 
-## Type Support For `.vue` Imports in TS
+## Why?
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+When you need to demonstrate vue components/effects, need the ability to preview online. 
+Unlike [sfc](https://sfc.vuejs.org/), it can be embedded into components and supports ui library introduction.
 
-1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+## Install
+
+```
+npm i vue-running
+```
+
+## Usage
+
+
+```html
+<script setup>
+import vueRunning from 'vue-running'
+</script>
+```
+## Options
+  - codeMirrorOption: 
+  
+    codeMirror options, please see [CodeMirror](https://codemirror.net/doc/manual.html#config)
+  - depLibs:
+      
+       dependencies 
+      ```typescript
+      interface depLibsType {
+        name: string; // ui library name
+        url?: string; // url to library
+        code?: string; // code to import
+        type: 'js' | 'css'; // js or css. 
+      }
+      ```
+  layout: 
+    
+    layout 'horizontal' | 'vertical';
+
+

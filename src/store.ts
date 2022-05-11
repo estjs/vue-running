@@ -21,9 +21,15 @@ const handleClick = () => {
 <template>
   <h1>{{ msg }}</h1>
   <input v-model="msg">
-  <br>
-  <e-button @click="handleClick">你瞅啥</e-button>
-  <el-button @click="handleClick">你瞅啥</el-button>
+  <br/>
+  <br/>
+  <h2>
+    use component library example
+  </h2>
+  <el-button @click="handleClick">element-plus</el-button>
+  <br/>
+  <e-button @click="handleClick">eurus-ui</e-button>
+  <br/>
 </template>
 
 <style>

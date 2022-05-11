@@ -223,7 +223,6 @@ input[type='search']::-webkit-search-decoration {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
   vertical-align: middle;
   outline: 0;
   border: 0;

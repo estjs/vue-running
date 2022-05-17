@@ -6,7 +6,6 @@ import Message from './Message.vue';
 import type { depLibsType, Store } from './store';
 import { debounce } from './utils';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface globalProps {
   codeMirrorOption?: EditorConfiguration;
   depLibs?: Array<depLibsType>;

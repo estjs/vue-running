@@ -20,14 +20,13 @@ import Preview from './Preview.vue';
 import type { depLibsType } from './store';
 import { replStore } from './store';
 
-interface globalProps {
+const props = withDefaults(defineProps<{
   codeMirrorOption?: EditorConfiguration;
   depLibs?: Array<depLibsType>;
   code?: string;
   layout?: 'horizontal' | 'vertical';
 }
-
-const props = withDefaults(defineProps<globalProps>(), {
+>(), {
   codeMirrorOption: ()=>{ return {} },
   layout: 'horizontal',
   code: '',

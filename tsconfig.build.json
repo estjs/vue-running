@@ -16,7 +16,7 @@
     "removeComments": false,
     "lib": ["esnext", "dom"],
     "rootDir": ".",
-    "declaration": true,
+    "declaration": false,
     "emitDeclarationOnly": true
   },
   "include": ["src"]

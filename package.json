@@ -46,8 +46,9 @@
     "release": "bumpp --commit --tag --push && pnpm publish"
   },
   "devDependencies": {
+    "@babel/types": "^7.17.10",
     "@estjs/eslint-config": "^0.2.25",
-    "@microsoft/api-extractor": "^8.0.0",
+    "@microsoft/api-extractor": "^7.19.2",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/codemirror": "^5.60.5",
@@ -55,7 +56,6 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "bumpp": "^7.1.1",
     "codemirror": "^5.65.3",
-    "pnpm": "^7.1.0",
     "rimraf": "^3.0.2",
     "rollup-plugin-esbuild": "^4.9.1",
     "rollup-plugin-postcss": "^4.0.2",
@@ -67,13 +67,5 @@
     "vitest": "^0.12.6",
     "vue": "^3.2.33",
     "vue-tsc": "^0.34.15"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/vue-running.d.ts"
-      ]
-    }
   }
 }

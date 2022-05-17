@@ -1,4 +1,3 @@
-, { codemirrorOption }
 <template>
   <div ref="el" class="editor" />
 </template>
@@ -9,13 +8,11 @@ import { onMounted, ref, watchEffect } from 'vue';
 import { debounce } from '../utils';
 import CodeMirror, { codemirrorOption } from './codemirror';
 
-interface Props {
+const props = withDefaults(defineProps<{
   mode?: string;
   value?: string;
   codeMirrorOption?: EditorConfiguration;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+}>(), {
   mode: 'htmlmixed',
   value: '',
   readonly: false,

@@ -23,7 +23,6 @@ import { ref } from 'vue'
 </style>
 `.trim();
 
-
 export class File {
   code: string;
   compiled = {

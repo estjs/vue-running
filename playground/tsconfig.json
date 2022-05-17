@@ -19,5 +19,8 @@
       "vue-running":["../src/main.ts"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules"],
+  "vueCompilerOptions": {
+    "experimentalDisableTemplateSupport": true
+  }
 }

@@ -1,7 +1,7 @@
 <template>
-  <main font-sans text='gray-700 dark:gray-200' flex flex-col h-full w-full relative>
+  <main font-sans text="gray-700 dark:gray-200" flex flex-col h-full w-full relative>
     <TheNav />
-    <vue-running :dep-libs='depLibs' :code='code' />
+    <vue-running :dep-libs="depLibs" :code="code" />
   </main>
 </template>
 
@@ -11,7 +11,6 @@ import vueRunning from 'vue-running'
 const depLibs = reactive< Array<any>>([] )
 
 const files = import.meta.glob('./source/*.{js,css}', { as: 'raw' })
-
 
 Object.keys(files).forEach((key)=> {
   
@@ -47,17 +46,17 @@ depLibs.push(...[{
   type: 'css',
 }])
 
-
-const code = `<script setup>
+const code = `
+    <script setup>
         import { ref } from 'vue'
-        import {EButton} from 'eurus-ui'
-        import {ElButton} from 'element-plus'
+        import { EButton } from 'eurus-ui'
+        import { ElButton } from 'element-plus'
         const msg = ref('Hello World!')
 
         const handleClick = () => {
           alert('瞅你咋地？')
         }
-    </script>
+    <\/script>
     <template>
       <h1>{{ msg }}</h1>
       <input v-model='msg'>
@@ -76,6 +75,4 @@ const code = `<script setup>
         color: red;
       }
     </style>`.trim()
-
-
 </script>

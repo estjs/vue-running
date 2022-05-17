@@ -23,16 +23,18 @@ import { replStore } from './store';
 interface globalProps {
   codeMirrorOption?: EditorConfiguration;
   depLibs?: Array<depLibsType>;
+  code?: string;
   layout?: 'horizontal' | 'vertical';
 }
 
 const props = withDefaults(defineProps<globalProps>(), {
   codeMirrorOption: ()=>{ return {} },
   layout: 'horizontal',
+  code: '',
   depLibs: ()=>[],
 } );
 
-const store = new replStore();
+const store = new replStore(props.code);
 
 provide('globalProps', props);
 provide('store', store);

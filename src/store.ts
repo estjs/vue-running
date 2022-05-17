@@ -6,38 +6,23 @@ export interface depLibsType {
   code?: string; // code to import
   type: 'js' | 'css'; // js or css. 
 }
+
 const welcomeCode = `
 <script setup>
 import { ref } from 'vue'
-import {EButton} from "eurus-ui"
-import {ElButton} from "element-plus"
-const msg = ref('Hello World!')
-
-const handleClick = () => {
-  alert("瞅你咋地？")
-}
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
   <input v-model="msg">
-  <br/>
-  <br/>
-  <h2>
-    use component library example
-  </h2>
-  <el-button @click="handleClick">element-plus</el-button>
-  <br/>
-  <e-button @click="handleClick">eurus-ui</e-button>
-  <br/>
 </template>
-
 <style>
   h1 {
     color: red;
   }
 </style>
 `.trim();
+
 
 export class File {
   code: string;
@@ -63,8 +48,8 @@ export interface Store {
 
 export class replStore implements Store {
   state: StoreState;
-  constructor() {
-    const file: File = new File(welcomeCode);
+  constructor(code: string) {
+    const file: File = new File(code || welcomeCode);
 
     this.state = reactive({
       file,

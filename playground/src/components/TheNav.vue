@@ -9,9 +9,9 @@ import { isDark, toggleDark } from '~/composables'
     <div flex-auto />
 
     <div flex="~ gap4 " items-center>
-      <button class="icon-btn !outline-none p1" @click="toggleDebug()">
+      <!-- <button class="icon-btn !outline-none p1" @click="toggleDebug()">
         <div i-carbon-debug />
-      </button>
+      </button> -->
 
       <!-- <button class="icon-btn !outline-none" @click="toggleDark()">
         <div v-if="togglePaneTop" i-carbon-open-panel-filled-bottom />

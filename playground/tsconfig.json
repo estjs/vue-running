@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
     "baseUrl": ".",
-    "module": "ESNext",
-    "target": "es2016",
-    "lib": ["DOM", "ESNext"],
-    "strict": true,
-    "esModuleInterop": true,
-    "incremental": false,
-    "skipLibCheck": true,
+    "lib": ["esnext", "DOM"],
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "strict": true,
     "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "skipDefaultLibCheck": true,
     "types": ["vite/client"],
     "paths": {
       "~/*": ["src/*"],
       "vue-running":["../src/main.ts"]
     }
   },
-  "exclude": ["dist", "node_modules"],
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true
   }

@@ -10,7 +10,7 @@ import vueRunning from 'vue-running'
 
 const depLibs = reactive< Array<any>>([] )
 
-const files = import.meta.glob('./source/*.{js,css}', { as: 'raw' })
+const files = (import.meta as ImportMeta).glob('./source/*.{js,css}', { as: 'raw' })
 
 Object.keys(files).forEach((key)=> {
   

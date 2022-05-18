@@ -48,14 +48,14 @@ depLibs.push(...[{
 
 const code = `
     <script setup>
-        import { ref } from 'vue'
-        import { EButton } from 'eurus-ui'
-        import { ElButton } from 'element-plus'
-        const msg = ref('Hello World!')
+      import { ref } from 'vue'
+      import { EButton } from 'eurus-ui'
+      import { ElButton } from 'element-plus'
+      const msg = ref('Hello World!')
 
-        const handleClick = () => {
-          alert('瞅你咋地？')
-        }
+      const handleClick = () => {
+        alert('瞅你咋地？')
+      }
     <\/script>
     <template>
       <h1>{{ msg }}</h1>

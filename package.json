@@ -1,6 +1,7 @@
 {
   "name": "vue-running",
   "version": "0.1.2",
+  "packageManager": "pnpm@6.32.3",
   "description": "Running Vue online",
   "keywords": [
     "vue",

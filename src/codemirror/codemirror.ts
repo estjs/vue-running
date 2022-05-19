@@ -27,10 +27,9 @@ export const codemirrorOption: EditorConfiguration = {
   autoCloseTags: true,
   readOnly: false,
   lineWrapping: true,
+  smartIndent: true,
   viewportMargin: Number.POSITIVE_INFINITY,
   gutters: ['CodeMirror-linenumbers'],
-
-  // scrollbarStyle: 'null',
   showCursorWhenSelecting: true,
   extraKeys: { Ctrl: 'autocomplete' },
 };

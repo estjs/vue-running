@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDark, toggleDark } from '~/composables'
+import { isDark, toggleDark, toggleLayout, isVertical } from '~/composables'
 </script>
 
 <template>
@@ -9,19 +9,12 @@ import { isDark, toggleDark } from '~/composables'
     <div flex-auto />
 
     <div flex="~ gap4 " items-center>
-      <!-- <button class="icon-btn !outline-none p1" @click="toggleDebug()">
-        <div i-carbon-debug />
-      </button> -->
-
-      <!-- <button class="icon-btn !outline-none" @click="toggleDark()">
-        <div v-if="togglePaneTop" i-carbon-open-panel-filled-bottom />
+      <button class="icon-btn !outline-none" @click="toggleLayout()">
+        <div v-if="isVertical" i-carbon-open-panel-filled-bottom />
         <div v-else i-carbon-open-panel-filled-top />
       </button>
-      <button class="icon-btn !outline-none" @click="toggleDark()">
-        <div v-if="togglePaneLeft" i-carbon-open-panel-filled-left />
-        <div v-else i-carbon-open-panel-filled-right />
-      </button>
-           <button class="icon-btn !outline-none p1" @click="toggleDebug()">
+
+      <!-- <button class="icon-btn !outline-none p1" @click="toggleDebug()">
         <div i-carbon-reset />
       </button> -->
       <button class="icon-btn !outline-none" @click="toggleDark()">

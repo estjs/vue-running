@@ -145,3 +145,9 @@ function setHTML(iframe: Ref<HTMLIFrameElement | undefined>) {
   border: none;
 }
 </style>
+
+<style>
+  #app{
+    overflow: auto;
+  }
+</style>

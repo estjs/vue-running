@@ -9,14 +9,18 @@
 import vueRunning from 'vue-running'
 import { isVertical, } from './composables';
 
-const depLibs = reactive< Array<any>>([] )
+const depLibs = reactive<Array<any>>([] )
 
 const layout = computed(()=>{
   
   return isVertical.value ? 'vertical' : 'horizontal'
 })
 
-const codeMirrorOption = { readOnly: false }
+const codeMirrorOption = {
+  // readOnly: true,
+  // lineNumbers: false,
+  // cursorBlinkRate: -1
+}
 const files = (import.meta as ImportMeta).glob('./source/*.{js,css}', { as: 'raw' })
 
 Object.keys(files).forEach((key)=> {

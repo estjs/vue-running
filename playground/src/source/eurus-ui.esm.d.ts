@@ -1,92 +1,92 @@
-import { ButtonHTMLAttributes, PropType, App } from "vue";
-type Size = "xs" | "sm" | "md" | "lg" | "xl";
-type Type = "default" | "text" | "primary" | "info" | "success" | "warning" | "error" | "purple" | undefined;
-declare const _default: import("vue").DefineComponent<{
-    type: {
-        type: PropType<Type>;
-        default: string;
-    };
-    size: {
-        type: PropType<Size>;
-        default: string;
-    };
-    loading: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    disabled: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    round: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    plain: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    circle: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    native: {
-        type: PropType<ButtonHTMLAttributes>;
-        default: {};
-    };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    type: {
-        type: PropType<Type>;
-        default: string;
-    };
-    size: {
-        type: PropType<Size>;
-        default: string;
-    };
-    loading: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    disabled: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    round: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    plain: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    circle: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    native: {
-        type: PropType<ButtonHTMLAttributes>;
-        default: {};
-    };
+import type { ButtonHTMLAttributes, PropType, App } from 'vue';
+type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type Type = 'default' | 'text' | 'primary' | 'info' | 'success' | 'warning' | 'error' | 'purple' | undefined;
+declare const _default: import('vue').DefineComponent<{
+  type: {
+    type: PropType<Type>;
+    default: string;
+  };
+  size: {
+    type: PropType<Size>;
+    default: string;
+  };
+  loading: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  disabled: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  round: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  plain: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  circle: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  native: {
+    type: PropType<ButtonHTMLAttributes>;
+    default: {};
+  };
+}, () => JSX.Element, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, Record<string, any>, string, import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, Readonly<import('vue').ExtractPropTypes<{
+  type: {
+    type: PropType<Type>;
+    default: string;
+  };
+  size: {
+    type: PropType<Size>;
+    default: string;
+  };
+  loading: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  disabled: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  round: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  plain: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  circle: {
+    type: BooleanConstructor;
+    default: boolean;
+  };
+  native: {
+    type: PropType<ButtonHTMLAttributes>;
+    default: {};
+  };
 }>>, {
-    type: Type;
-    circle: boolean;
-    size: Size;
-    loading: boolean;
-    disabled: boolean;
-    round: boolean;
-    plain: boolean;
-    native: ButtonHTMLAttributes;
+  type: Type;
+  circle: boolean;
+  size: Size;
+  loading: boolean;
+  disabled: boolean;
+  round: boolean;
+  plain: boolean;
+  native: ButtonHTMLAttributes;
 }>;
 declare const EButton: typeof _default;
 type ComponentType = any;
 interface UiInstance {
-    version: string;
-    componentPrefix: string;
-    install: (app: App) => void;
+  version: string;
+  componentPrefix: string;
+  install: (app: App) => void;
 }
 interface UiCreateOptions {
-    components?: ComponentType[];
-    componentPrefix?: string;
+  components?: ComponentType[];
+  componentPrefix?: string;
 }
 declare function create({ componentPrefix, components }?: UiCreateOptions): UiInstance;
 export { EButton, create };

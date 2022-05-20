@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from 'vue';
 
-const props = defineProps<{ layout?: 'horizontal' | 'vertical' }>();
+const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolean }>();
 const isVertical = computed(() => props.layout === 'vertical');
 
 const container = ref();
@@ -19,10 +19,10 @@ const boundSplit = computed(() => {
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left" :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
+    <div class="left flex-1" :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
       <slot name="left" />
     </div>
-    <div class="right" :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
+    <div v-if="props.showCode" class="right flex-1" :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
       <slot name="right" />
     </div>
   </div>

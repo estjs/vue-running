@@ -1,6 +1,6 @@
 <template>
   <div class="vue-run">
-    <SplitPane :layout="layout">
+    <SplitPane :layout="layout" :show-code="props.showCode">
       <template #right>
         <Editor />
       </template>
@@ -24,12 +24,14 @@ const props = withDefaults(defineProps<{
   codeMirrorOption?: EditorConfiguration;
   depLibs?: Array<depLibsType>;
   code?: string;
+  showCode?: boolean;
   layout?: 'horizontal' | 'vertical';
 }
 >(), {
   codeMirrorOption: ()=>{ return {} },
   layout: 'horizontal',
   code: '',
+  showCode: false,
   depLibs: ()=>[],
 } );
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-run">
+  <div class="vue-run" dark:bg-hex-242424>
     <SplitPane :layout="layout" :show-code="props.showCode">
       <template #right>
         <Editor />
@@ -50,39 +50,15 @@ provide('store', store);
   --font-code: Menlo, Monaco, Consolas, 'Courier New', monospace;
   --color-branding: #42b883;
   --color-branding-dark: #416f9c;
-  --header-height: 38px;
+  --header-height: 38px; 
 
   height: 100%;
   width: 100%;
   flex: 1;
   font-size: 13px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
   margin: 0;
   overflow: hidden;
   background-color: var(--bg-soft);
-}
-
-.dark .vue-run {
-  --bg: #1a1a1a;
-  --bg-soft: #242424;
-  --border: #383838;
-  --text-light: #aaa;
-  --color-branding: #42d392;
-  --color-branding-dark: #89ddff;
-}
-
-.vue-run .Example {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-  height: var(--header-height);
-  background-color: var(--bg);
-  color: var(--text-light);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  border-bottom: 1px solid var(--border);
 }
 </style>

@@ -19,10 +19,10 @@ const boundSplit = computed(() => {
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left flex-1" :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
+    <div class="left flex-1" border-r-hex-ddd dark:border-r-hex-383838 border-r-1 :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
       <slot name="left" />
     </div>
-    <div v-if="props.showCode" class="right flex-1" :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
+    <div v-if="props.showCode" class="right flex-1" border-r-hex-ddd dark:border-r-hex-383838 border-r-1 :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
       <slot name="right" />
     </div>
   </div>
@@ -39,10 +39,6 @@ const boundSplit = computed(() => {
 .right {
   position: relative;
   height: 100%;
-}
-
-.left {
-  border-right: 1px solid var(--border);
 }
 
 .dragger {

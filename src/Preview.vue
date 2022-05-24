@@ -74,6 +74,7 @@ function setIframe() {
                 <script async src='${defineImport}'><\/script>
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
+                <style type='text/css'>#app{overflow:auto}<\/style>
               </head>
               <body id='body'>
                 <div>

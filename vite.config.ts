@@ -1,14 +1,20 @@
-import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
+import { presetAttributify, presetUno } from 'unocss'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
 export default defineConfig({
   plugins: [
-    vue(), // https://github.com/antfu/unocss
-    // see unocss.config.ts for config
+    vue(), 
+    vueJsx(),
     Unocss({
-      configFile: path.resolve(__dirname, 'uno.config.ts'),
-    })],
+      presets: [
+        presetUno(),
+        presetAttributify()
+      ]
+    })
+  ],
   build: {
     minify: false,
     lib: {

@@ -20,7 +20,7 @@
   --selected-bg: #d7d4f0;
   --selected-bg-non-focus: #d9d9d9;
   --cursor: #000;
-
+  --font-code: Menlo, Monaco, Consolas, 'Courier New', monospace;
   --border: #ddd;
 
   direction: ltr;

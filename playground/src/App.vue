@@ -21,7 +21,7 @@ const codeMirrorOption = {
   // lineNumbers: false,
   // cursorBlinkRate: -1
 }
-const files = (import.meta as ImportMeta).glob('./source/*.{js,css}', { as: 'raw' })
+const files = (import.meta as ImportMeta).glob('./eurus/*.{js,css}', { as: 'raw' })
 
 Object.keys(files).forEach((key)=> {
   
@@ -41,6 +41,7 @@ Object.keys(files).forEach((key)=> {
   }
 })
 
+// 
 depLibs.push(...[{
   name: 'element-plus',
   url: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.4/dist/index.full.mjs',
@@ -50,21 +51,34 @@ depLibs.push(...[{
   name: '',
   url: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.4/dist/index.css',
   type: 'css',
-}])
+},
+{
+  name: 'quasar',
+  url: 'https://cdn.jsdelivr.net/npm/quasar@2.7.1/dist/quasar.esm.prod.js',
+  type: 'js',
+},
+{
+  name: '',
+  url: 'https://cdn.jsdelivr.net/npm/quasar@2.7.1/dist/quasar.css',
+  type: 'css',
+},
+])
 
 const code = `
  <script setup>
    import { ref } from 'vue'
    import { EButton } from 'eurus-ui'
    import { ElButton } from 'element-plus'
+   import { QBtn } from 'quasar'
    const msg = ref('Hello World!')
+
 
    const handleClick = () => {
      alert('瞅你咋地？')
    }
  <\/script>
  <template>
-   <h1>{{ msg }}</h1>
+   <h3>{{ msg }}</h3>
    <input v-model='msg'>
    <br/>
    <br/>
@@ -75,6 +89,16 @@ const code = `
    <br/>
    <e-button @click='handleClick'>eurus-ui</e-button>
    <br/>
+     <div class="q-pa-md q-gutter-sm">
+    <q-btn color="white" text-color="black" label="Standard" />
+    <q-btn color="primary" label="Primary" />
+    <q-btn color="secondary" label="Secondary" />
+    <q-btn color="amber" glossy label="Amber" />
+    <q-btn color="brown-5" label="Brown 5" />
+    <q-btn color="deep-orange" glossy label="Deep Orange" />
+    <q-btn color="purple" label="Purple" />
+    <q-btn color="black" label="Black" />
+  </div>
  </template>
  <style>
    h1 {

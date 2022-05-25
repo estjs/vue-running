@@ -71,10 +71,16 @@ function setIframe() {
           <!DOCTYPE html>
             <html>
               <head>
+               <script>
+                window.onerror = function (err) {
+                  console.info('error',err);
+                }
+                <\/script>
                 <script async src='${defineImport}'><\/script>
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
                 <style type='text/css'>#app{overflow:auto}<\/style>
+     
               </head>
               <body id='body'>
                 <div>
@@ -98,6 +104,11 @@ function getScript(script?: string) {
       const AppComponent =__sfc__;
       AppComponent.name = 'Repl';
       const app = (window.__app__ = _createApp(AppComponent));
+      //  如果导入quasar, 则需要在这里配置。
+      import { Quasar } from 'quasar'
+      app.use(Quasar, {
+        plugins: {}, // import Quasar plugins and add here
+      })
       app.config.unwrapInjectedRef = true;
       app.config.errorHandler = (e) => console.error(e)
       app.mount('#app')

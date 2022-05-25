@@ -75,16 +75,14 @@ function setIframe() {
           <!DOCTYPE html>
             <html>
               <head>
-               <script>
                 <script async src='${defineImport}'><\/script>
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
                 <style type='text/css'>
-                #app{overflow:auto;padding:0 12px;}
-                #app >*{margin-top: 10px;margin-left: 10px;}
-                *{margin: 0;padding: 0;}
-                <\/style>
-     
+                  #app{overflow:auto;padding:0 12px;}
+                  #app>*{margin-top: 10px;margin-left: 10px;}
+                  *{margin: 0;padding: 0;}
+                </style>
               </head>
               <body id='body'>
                 <div>

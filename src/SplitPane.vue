@@ -21,19 +21,17 @@ const container = ref();
 <style scoped>
 .split-pane {
   display: flex;
-  height: 100%;
   position: relative;
 }
 
 .left,
 .right {
   position: relative;
-  height: 100%;
   flex: 1;
 }
 
-.left {
-  border-right: 1px solid var(--border);
+.right {
+  border-left: 1px solid var(--border);
 }
 
 .dragger {
@@ -65,13 +63,11 @@ const container = ref();
   background-color: var(--bg);
 }
 
-/* vertical */
-@media (min-width: 721px) {
-  .split-pane.vertical {
-    display: block;
+.vertical {
+    flex-direction: column;
   }
 
-  .split-pane.vertical.dragging {
+.vertical.dragging {
     cursor: ns-resize;
   }
 
@@ -94,34 +90,4 @@ const container = ref();
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
-}
-
-/* mobile */
-@media (max-width: 720px) {
-  .left,
-  .right {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .dragger {
-    display: none;
-  }
-
-  .split-pane .toggler {
-    display: block;
-  }
-
-  .split-pane .right {
-    display: none;
-  }
-
-  .split-pane.show-output .right {
-    display: block;
-  }
-
-  .split-pane.show-output .left {
-    display: none;
-  }
-}
 </style>

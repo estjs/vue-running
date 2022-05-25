@@ -104,7 +104,6 @@ function getScript(script?: string) {
       const AppComponent =__sfc__;
       AppComponent.name = 'Repl';
       const app = (window.__app__ = _createApp(AppComponent));
-      //  如果导入quasar, 则需要在这里配置。
       import { Quasar } from 'quasar'
       app.use(Quasar, {
         plugins: {}, // import Quasar plugins and add here
@@ -156,10 +155,4 @@ function setHTML(iframe: Ref<HTMLIFrameElement | undefined>) {
   height: 100%;
   border: none;
 }
-</style>
-
-<style>
-  #app{
-    overflow: auto;
-  }
 </style>

@@ -1,28 +1,18 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolean }>();
 const isVertical = computed(() => props.layout === 'vertical');
 
 const container = ref();
-
-const state = reactive({
-  dragging: false,
-  split: 50,
-});
-
-const boundSplit = computed(() => {
-  const { split } = state;
-  return split < 20 ? 20 : split > 80 ? 80 : split;
-});
 </script>
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left flex-1" :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
+    <div class="left flex-1">
       <slot name="left" />
     </div>
-    <div v-if="props.showCode" class="right flex-1" :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
+    <div v-if="props.showCode" class="right flex-1">
       <slot name="right" />
     </div>
   </div>

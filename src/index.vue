@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<{
   codeMirrorOption: ()=>{ return {} },
   layout: 'horizontal',
   code: '',
-  showCode: true,
+  showCode: false,
   depLibs: ()=>[],
 } );
 

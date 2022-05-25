@@ -1,7 +1,7 @@
 <template>
   <main font-sans text="gray-700 dark:gray-200" flex flex-col h-full w-full relative>
     <TheNav />
-    <vue-running :dep-libs="depLibs" :code="code" :layout="layout" :code-mirror-option="codeMirrorOption" />
+    <vue-running :dep-libs="depLibs" :code="code" :layout="layout" :show-code="true" :code-mirror-option="codeMirrorOption" />
   </main>
 </template>
 

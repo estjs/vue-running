@@ -29,6 +29,7 @@ const store = inject<Store>('store');
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
+const isQuasar = ref(false)
 onMounted(() => setIframe());
 
 watch(
@@ -55,6 +56,9 @@ function setIframe() {
       }
       if (lib.type === 'js') {
         if ( lib.url) {
+          if (lib.name === 'quasar') {
+            isQuasar.value = true
+          }
           defineDep[lib.name] = lib.url;
         } else if ( lib.code) {
           const blob = new Blob([
@@ -104,10 +108,10 @@ function getScript(script?: string) {
       const AppComponent =__sfc__;
       AppComponent.name = 'Repl';
       const app = (window.__app__ = _createApp(AppComponent));
-      import { Quasar } from 'quasar'
+      ${isQuasar.value ? `import { Quasar } from 'quasar'
       app.use(Quasar, {
         plugins: {}, // import Quasar plugins and add here
-      })
+      })` : ''}
       app.config.unwrapInjectedRef = true;
       app.config.errorHandler = (e) => console.error(e)
       app.mount('#app')

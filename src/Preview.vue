@@ -76,7 +76,7 @@ function setIframe() {
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
                 <style type='text/css'>
-                #app{overflow:auto}
+                #app{overflow:auto;padding:0 12px;}
                 #app >*{margin-top: 10px;margin-left: 10px;}
                 *{margin: 0;padding: 0;}
                 <\/style>

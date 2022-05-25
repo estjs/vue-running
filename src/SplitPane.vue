@@ -9,10 +9,10 @@ const container = ref();
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left flex-1">
+    <div class="left">
       <slot name="left" />
     </div>
-    <div v-if="props.showCode" class="right flex-1">
+    <div v-if="props.showCode" class="right">
       <slot name="right" />
     </div>
   </div>
@@ -29,6 +29,7 @@ const container = ref();
 .right {
   position: relative;
   height: 100%;
+  flex: 1;
 }
 
 .left {

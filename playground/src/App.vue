@@ -81,15 +81,11 @@ const code = `
    <h3>{{ msg }}</h3>
    <input v-model='msg'>
    <br/>
-   <br/>
-   <h2>
-     use component library example
-   </h2>
+   <h4>element-plus</h4>
    <el-button @click='handleClick'>element-plus</el-button>
-   <br/>
+   <h4>eurus-ui</h4>
    <e-button @click='handleClick'>eurus-ui</e-button>
-   <br/>
-     <div class="q-pa-md q-gutter-sm">
+    <h4>quasar</h4>
     <q-btn color="white" text-color="black" label="Standard" />
     <q-btn color="primary" label="Primary" />
     <q-btn color="secondary" label="Secondary" />
@@ -98,7 +94,6 @@ const code = `
     <q-btn color="deep-orange" glossy label="Deep Orange" />
     <q-btn color="purple" label="Purple" />
     <q-btn color="black" label="Black" />
-  </div>
  </template>
  <style>
    h1 {

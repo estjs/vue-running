@@ -24,6 +24,7 @@
   direction: ltr;
   font-family: var(--font-code);
   height: auto;
+  font-size: 14px;
 }
 
 .dark .CodeMirror {

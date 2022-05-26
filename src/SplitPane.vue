@@ -1,15 +1,28 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolean }>();
 const isVertical = computed(() => props.layout === 'vertical');
 
 const container = ref();
+const leftHeight = ref('auto')
+
+window.addEventListener('storage', (event) => { 
+  if (event.key === 'VueRunningAppHeight' && event.newValue !== '0') {
+    
+    leftHeight.value = event.newValue + 'px';
+  }
+  
+});
+
+onMounted(() => {
+  localStorage.setItem('1`', Math.random().toString());
+});
 </script>
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left">
+    <div class="left" :style="{ height: leftHeight }">
       <slot name="left" />
     </div>
     <div v-if="props.showCode" class="right">
@@ -64,7 +77,7 @@ const container = ref();
 }
 
 .vertical {
-    flex-direction: column;
+  display: block;
   }
 
 .vertical.dragging {

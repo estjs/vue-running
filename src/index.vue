@@ -52,14 +52,13 @@ provide('store', store);
   --color-branding-dark: #416f9c;
   --header-height: 38px;
 
-  height: 100%;
   width: 100%;
   flex: 1;
   font-size: 13px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
   background-color: var(--bg-soft);
 }
 
@@ -70,19 +69,5 @@ provide('store', store);
   --text-light: #aaa;
   --color-branding: #42d392;
   --color-branding-dark: #89ddff;
-}
-
-.vue-run .Example {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-  height: var(--header-height);
-  background-color: var(--bg);
-  color: var(--text-light);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  border-bottom: 1px solid var(--border);
 }
 </style>

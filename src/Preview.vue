@@ -79,7 +79,7 @@ function setIframe() {
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
                 <style type='text/css'>
-                  #app{overflow:auto;padding:10px;}
+                  #app{overflow:auto;padding:10px;height:auto;width:100%;}
                   #app>*{margin:10px 0 10px 10px;}
                   *{margin: 0;padding: 0;}
                 </style>
@@ -102,7 +102,7 @@ function setIframe() {
 function getScript(script?: string) {
   return ` 
     ${script}
-      import { createApp as _createApp } from 'vue';
+      import { createApp as _createApp,nextTick as _nextTick } from 'vue';
       const AppComponent =__sfc__;
       AppComponent.name = 'Repl';
       const app = (window.__app__ = _createApp(AppComponent));
@@ -110,10 +110,15 @@ function getScript(script?: string) {
       app.use(Quasar, {
         plugins: {}, // import Quasar plugins and add here
       })` : ''}
+      window.localStorage.setItem('VueRunningAppHeight',"0");
+      _nextTick(()=>{
+        const contentHeight = document.getElementById('app').offsetHeight;
+        window.localStorage.setItem('VueRunningAppHeight',contentHeight.toString());
+      })
       app.config.unwrapInjectedRef = true;
       app.config.errorHandler = (e) => console.error(e)
       app.mount('#app')
-      `;
+      `
 }
 // 设置html
 function setHTML(iframe: Ref<HTMLIFrameElement | undefined>) {

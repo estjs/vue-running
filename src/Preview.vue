@@ -35,14 +35,10 @@ window.addEventListener('resize', debounce(() => {
   setHTML(iframe);
 }, 20));
 
-watch(()=>globalProp!.layout, () => {
-  if ( globalProp!.showCode ) {
-    console.log('globalProp.layout', globalProp!.layout);
-    setHTML(iframe);
-  }
-})
 const isQuasar = ref(false)
 onMounted(() => setIframe());
+
+console.log(this)
 
 watch(
   () => store!.state.file.compiled.js,

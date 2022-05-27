@@ -17,7 +17,7 @@ window.addEventListener('storage', (event) => {
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
     <div class="left" :style="{ height: leftHeight }">
-      <slot name="left" />
+      <slot name="left" :layout="props.layout" />
     </div>
     <div v-if="props.showCode" class="right">
       <slot name="right" />

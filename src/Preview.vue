@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import { provide, inject, onMounted, ref, watch } from 'vue';
+import { inject, onMounted, ref, watch } from 'vue';
 import type { depLibsType, Store } from './store';
 import { debounce } from './utils';
 

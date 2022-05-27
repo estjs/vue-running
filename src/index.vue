@@ -12,14 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { provide, watch } from 'vue';
+import { provide } from 'vue';
 import type { EditorConfiguration } from 'codemirror';
 import SplitPane from './SplitPane.vue';
 import Editor from './Editor.vue';
 import Preview from './Preview.vue';
 import type { depLibsType } from './store';
 import { replStore } from './store';
-import { debounce } from './utils';
 
 const props = withDefaults(defineProps<{
   codeMirrorOption?: EditorConfiguration;

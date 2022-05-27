@@ -10,12 +10,14 @@
 
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import { inject, onMounted, ref, watch } from 'vue';
+import { provide, inject, onMounted, ref, watch } from 'vue';
 import type { depLibsType, Store } from './store';
+import { debounce } from './utils';
 
 interface globalProps {
   readonly?: boolean;
   depLibs?: Array<depLibsType>;
+  showCode?: boolean;
   layout?: 'horizontal' | 'vertical';
 }
 
@@ -29,6 +31,15 @@ const store = inject<Store>('store');
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
+window.addEventListener('resize', debounce(() => {
+  setHTML(iframe);
+}, 20));
+
+watch(()=>globalProp!.layout, (val) => {
+  if (val === 'horizontal' && globalProp!.showCode ) {
+    setHTML(iframe);
+  }
+})
 const isQuasar = ref(false)
 onMounted(() => setIframe());
 
@@ -79,6 +90,7 @@ function setIframe() {
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
                 <style type='text/css'>
+                  html{overflow:hidden}
                   #app{overflow:auto;padding:10px;height:auto;width:100%;}
                   #app>*{margin:10px 0 10px 10px;}
                   *{margin: 0;padding: 0;}
@@ -113,6 +125,7 @@ function getScript(script?: string) {
       window.localStorage.setItem('VueRunningAppHeight',"0");
       _nextTick(()=>{
         const contentHeight = document.getElementById('app').offsetHeight;
+        console.log('contentHeight',contentHeight);
         window.localStorage.setItem('VueRunningAppHeight',contentHeight.toString());
       })
       app.config.unwrapInjectedRef = true;

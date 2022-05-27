@@ -35,8 +35,9 @@ window.addEventListener('resize', debounce(() => {
   setHTML(iframe);
 }, 20));
 
-watch(()=>globalProp!.layout, (val) => {
-  if (val === 'horizontal' && globalProp!.showCode ) {
+watch(()=>globalProp!.layout, () => {
+  if ( globalProp!.showCode ) {
+    console.log('globalProp.layout', globalProp!.layout);
     setHTML(iframe);
   }
 })

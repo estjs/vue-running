@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     minify: false,
-    watch: {},
     lib: {
       entry: './src/main.ts',
       formats: ['es', 'cjs'],

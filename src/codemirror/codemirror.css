@@ -24,6 +24,7 @@
   direction: ltr;
   font-family: var(--font-code);
   height: auto;
+  padding: 10px;
   font-size: 14px;
 }
 
@@ -309,7 +310,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
    the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
-  position: relative;
   overflow: hidden;
   background: white;
 }
@@ -323,7 +323,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   padding-bottom: 30px;
   height: 100%;
   outline: none; /* Prevent dragging from highlighting the element */
-  position: relative;
 }
 .CodeMirror-sizer {
   position: relative;
@@ -366,6 +365,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   position: absolute;
   left: 0;
   top: 0;
+  width: 40px;
   min-height: 100%;
   z-index: 3;
 }
@@ -374,7 +374,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   height: 100%;
   display: inline-block;
   vertical-align: top;
-  margin-bottom: -30px;
+  margin-bottom: -20px;
 }
 .CodeMirror-gutter-wrapper {
   position: absolute;

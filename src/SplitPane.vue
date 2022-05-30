@@ -28,6 +28,7 @@ window.addEventListener('storage', (event) => {
 <style scoped>
 .split-pane {
   display: flex;
+  align-items: top;
   position: relative;
 }
 

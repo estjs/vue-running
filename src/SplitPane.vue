@@ -9,7 +9,7 @@ const container = ref();
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left">
+    <div class="left" :class="{ 'no-border': isVertical && !props.showCode }">
       <slot name="left" />
     </div>
     <div v-if="props.showCode" class="right">
@@ -90,4 +90,8 @@ const container = ref();
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
+
+.no-border {
+  border: none;
+}  
 </style>

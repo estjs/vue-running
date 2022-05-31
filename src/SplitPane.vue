@@ -100,6 +100,6 @@ window.addEventListener('storage', (event) => {
   }
 
 .no-border {
-  border: none;
+  border: none !important;
 }  
 </style>

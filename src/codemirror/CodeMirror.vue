@@ -21,7 +21,6 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<(e: 'change', value: string) => void>();
 
 const el = ref<HTMLElement>();
-const needAutoResize = true;
 
 onMounted(() => {
   const editor = CodeMirror(el.value!, {
@@ -50,20 +49,17 @@ onMounted(() => {
     editor.refresh();
   }, 50);
 
-  if (needAutoResize) {
-    window.addEventListener(
-      'resize',
-      debounce(() => {
-        editor.refresh();
-      }),
-    );
-  }
+  window.addEventListener(
+    'resize',
+    debounce(() => {
+      editor.refresh();
+    }),
+  );
 });
 </script>
 
 <style>
 .editor {
-  position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;

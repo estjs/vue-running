@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.5.0",
-    "vue": "^3.2.34"
+    "vue": "^3.2.36"
   },
   "devDependencies": {
     "@estjs/eslint-config": "^0.2.25",
     "@iconify-json/carbon": "^1.1.5",
     "@unocss/reset": "^0.33.5",
     "@vitejs/plugin-vue": "^2.3.3",
-    "eslint": "^8.15.0",
+    "eslint": "^8.16.0",
     "unocss": "^0.33.5",
     "unplugin-auto-import": "^0.7.2",
-    "unplugin-vue-components": "^0.19.5",
+    "unplugin-vue-components": "^0.19.6",
     "vite": "^2.9.9"
   }
 }

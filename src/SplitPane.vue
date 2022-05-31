@@ -5,12 +5,19 @@ const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolea
 const isVertical = computed(() => props.layout === 'vertical');
 
 const container = ref();
+const leftHeight = ref('auto')
+
+window.addEventListener('storage', (event) => { 
+  if (event.key === 'VueRunningAppHeight' && event.newValue !== '0') {
+    leftHeight.value = event.newValue + 'px';
+  }
+});
 </script>
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left" :class="{ 'no-border': isVertical && !props.showCode }">
-      <slot name="left" />
+    <div class="left" :style="{ height: leftHeight }" :class="{ 'no-border': isVertical && !props.showCode }">
+      <slot name="left" :layout="props.layout" />
     </div>
     <div v-if="props.showCode" class="right">
       <slot name="right" />
@@ -21,6 +28,7 @@ const container = ref();
 <style scoped>
 .split-pane {
   display: flex;
+  align-items: top;
   position: relative;
 }
 
@@ -64,7 +72,7 @@ const container = ref();
 }
 
 .vertical {
-    flex-direction: column;
+  display: block;
   }
 
 .vertical.dragging {

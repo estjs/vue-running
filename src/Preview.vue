@@ -38,8 +38,6 @@ window.addEventListener('resize', debounce(() => {
 const isQuasar = ref(false)
 onMounted(() => setIframe());
 
-console.log(this)
-
 watch(
   () => store!.state.file.compiled.js,
   () => {

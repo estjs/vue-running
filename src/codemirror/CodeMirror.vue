@@ -5,7 +5,6 @@
 <script setup lang="ts">
 import type { EditorConfiguration } from 'codemirror';
 import { onMounted, ref, watchEffect } from 'vue';
-import { debounce } from '../utils';
 import CodeMirror, { codemirrorOption } from './codemirror';
 
 const props = withDefaults(defineProps<{

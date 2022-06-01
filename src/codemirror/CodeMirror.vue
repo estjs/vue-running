@@ -49,12 +49,6 @@ onMounted(() => {
     editor.refresh();
   }, 50);
 
-  window.addEventListener(
-    'resize',
-    debounce(() => {
-      editor.refresh();
-    }),
-  );
 });
 </script>
 

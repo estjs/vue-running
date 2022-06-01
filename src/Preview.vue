@@ -31,14 +31,8 @@ const store = inject<Store>('store');
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
-window.addEventListener('resize', debounce(() => {
-  setHTML(iframe);
-}, 20));
-
 const isQuasar = ref(false)
 onMounted(() => setIframe());
-
-console.log(this)
 
 watch(
   () => store!.state.file.compiled.js,
@@ -122,7 +116,6 @@ function getScript(script?: string) {
       window.localStorage.setItem('VueRunningAppHeight',"0");
       _nextTick(()=>{
         const contentHeight = document.getElementById('app').offsetHeight;
-        console.log('contentHeight',contentHeight);
         window.localStorage.setItem('VueRunningAppHeight',contentHeight.toString());
       })
       app.config.unwrapInjectedRef = true;

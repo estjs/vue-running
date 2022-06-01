@@ -36,7 +36,7 @@ const iframeWidth = ref(0);
 window.addEventListener('resize', debounce(() => {
   if (iframeWidth.value !== iframe?.value?.offsetWidth) {
     iframeWidth.value = iframe?.value?.offsetWidth || 0;
-    setIframe();
+    setHTML(iframe);
   }
 }, 20));
 

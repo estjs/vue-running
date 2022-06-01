@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolean }>();
 const isVertical = computed(() => props.layout === 'vertical');
@@ -7,16 +7,9 @@ const isVertical = computed(() => props.layout === 'vertical');
 const container = ref();
 const leftHeight = ref('auto')
 
-const containerHeight = ref(0);
-
-onMounted(()=>{
-  containerHeight.value = container.value.clientHeight;
-})
-
 window.addEventListener('storage', (event) => { 
-  if (event.key === 'VueRunningAppHeight' && event.newValue !== '0' && containerHeight.value !== container.value.clientHeight) {
+  if (event.key === 'VueRunningAppHeight' && event.newValue !== '0' ) {
     leftHeight.value = event.newValue + 'px';
-    containerHeight.value = container.value.clientHeight;
   }
 });
 </script>

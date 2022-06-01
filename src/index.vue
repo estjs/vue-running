@@ -58,7 +58,6 @@ provide('store', store);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
   margin: 0;
-  overflow: auto;
   background-color: var(--bg-soft);
 }
 

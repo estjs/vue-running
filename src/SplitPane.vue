@@ -23,7 +23,7 @@ window.addEventListener('storage', (event) => {
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left" :style="{ height: leftHeight }">
+    <div class="left" :style="{ height: leftHeight }" :class="{ 'no-border': isVertical && !props.showCode }">
       <slot name="left" :layout="props.layout" />
     </div>
     <div v-if="props.showCode" class="right">
@@ -105,4 +105,8 @@ window.addEventListener('storage', (event) => {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
+
+.no-border {
+  border: none !important;
+}  
 </style>

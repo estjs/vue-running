@@ -12,6 +12,7 @@
 import type { Ref } from 'vue';
 import { inject, onMounted, ref, watch } from 'vue';
 import type { depLibsType, Store } from './store';
+import { debounce } from './utils';
 
 interface globalProps {
   readonly?: boolean;
@@ -30,8 +31,20 @@ const store = inject<Store>('store');
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
+const iframeWidth = ref(0);
+
+window.addEventListener('resize', debounce(() => {
+  if (iframeWidth.value !== iframe?.value?.offsetWidth) {
+    iframeWidth.value = iframe?.value?.offsetWidth || 0;
+    setIframe();
+  }
+}, 20));
+
 const isQuasar = ref(false)
-onMounted(() => setIframe());
+onMounted(() => {
+  iframeWidth.value = iframe?.value?.offsetWidth || 0;
+  setIframe()
+});
 
 watch(
   () => store!.state.file.compiled.js,

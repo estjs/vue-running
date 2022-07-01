@@ -21,9 +21,15 @@ interface globalProps {
   layout?: 'horizontal' | 'vertical';
 }
 
-const defineImport = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js';
+// const defineImport = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js';
+// const defineDep: { [key in string]: string } = {
+//   vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
+// };
+// 
+
+const defineImport = new URL('./deps/es-module-shims.min.js', import.meta.url).href
 const defineDep: { [key in string]: string } = {
-  vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
+  vue: new URL('./deps/vue-runtime-dom.esm-browser.js', import.meta.url).href
 };
 
 const store = inject<Store>('store');

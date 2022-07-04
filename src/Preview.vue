@@ -26,7 +26,6 @@ interface globalProps {
 //   vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
 // };
 
-
 const defineImport = new URL('./deps/es-module-shims.min.js', import.meta.url).href
 const defineDep: { [key in string]: string } = {
   vue: new URL('./deps/vue-runtime-dom.esm-browser.js', import.meta.url).href

@@ -1,28 +1,25 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{ layout?: 'horizontal' | 'vertical'; showCode: boolean }>();
 const isVertical = computed(() => props.layout === 'vertical');
 
 const container = ref();
+const leftHeight = ref('auto')
 
-const state = reactive({
-  dragging: false,
-  split: 50,
-});
-
-const boundSplit = computed(() => {
-  const { split } = state;
-  return split < 20 ? 20 : split > 80 ? 80 : split;
+window.addEventListener('storage', (event) => { 
+  if (event.key === 'VueRunningAppHeight' && event.newValue !== '0' ) {
+    leftHeight.value = event.newValue + 'px';
+  }
 });
 </script>
 
 <template>
   <div ref="container" class="split-pane" :class="{ vertical: isVertical }">
-    <div class="left flex-1" border-r-hex-ddd dark:border-r-hex-383838 border-r-1 :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
-      <slot name="left" />
+    <div class="left" :style="{ height: leftHeight }" :class="{ 'no-border': isVertical && !props.showCode }">
+      <slot name="left" :layout="props.layout" />
     </div>
-    <div v-if="props.showCode" class="right flex-1" border-r-hex-ddd dark:border-r-hex-383838 border-r-1 :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
+    <div v-if="props.showCode" class="right">
       <slot name="right" />
     </div>
   </div>
@@ -31,16 +28,23 @@ const boundSplit = computed(() => {
 <style scoped>
 .split-pane {
   display: flex;
-  height: 100%;
+  align-items: top;
   position: relative;
 }
 
 .left,
 .right {
   position: relative;
-  height: 100%;
+  flex: 1;
 }
 
+<<<<<<< HEAD
+=======
+.right {
+  border-left: 1px solid var(--border);
+}
+
+>>>>>>> main
 .dragger {
   position: absolute;
   z-index: 3;
@@ -70,13 +74,11 @@ const boundSplit = computed(() => {
   background-color: var(--bg);
 }
 
-/* vertical */
-@media (min-width: 721px) {
-  .split-pane.vertical {
-    display: block;
+.vertical {
+  display: block;
   }
 
-  .split-pane.vertical.dragging {
+.vertical.dragging {
     cursor: ns-resize;
   }
 
@@ -99,34 +101,8 @@ const boundSplit = computed(() => {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
-}
 
-/* mobile */
-@media (max-width: 720px) {
-  .left,
-  .right {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .dragger {
-    display: none;
-  }
-
-  .split-pane .toggler {
-    display: block;
-  }
-
-  .split-pane .right {
-    display: none;
-  }
-
-  .split-pane.show-output .right {
-    display: block;
-  }
-
-  .split-pane.show-output .left {
-    display: none;
-  }
-}
+.no-border {
+  border: none !important;
+}  
 </style>

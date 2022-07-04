@@ -5,7 +5,6 @@
 <script setup lang="ts">
 import type { EditorConfiguration } from 'codemirror';
 import { onMounted, ref, watchEffect } from 'vue';
-import { debounce } from '../utils';
 import CodeMirror, { codemirrorOption } from './codemirror';
 
 const props = withDefaults(defineProps<{
@@ -21,7 +20,6 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<(e: 'change', value: string) => void>();
 
 const el = ref<HTMLElement>();
-const needAutoResize = true;
 
 onMounted(() => {
   const editor = CodeMirror(el.value!, {
@@ -50,20 +48,11 @@ onMounted(() => {
     editor.refresh();
   }, 50);
 
-  if (needAutoResize) {
-    window.addEventListener(
-      'resize',
-      debounce(() => {
-        editor.refresh();
-      }),
-    );
-  }
 });
 </script>
 
 <style>
 .editor {
-  position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;

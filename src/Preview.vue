@@ -12,16 +12,24 @@
 import type { Ref } from 'vue';
 import { inject, onMounted, ref, watch } from 'vue';
 import type { depLibsType, Store } from './store';
+import { debounce } from './utils';
 
 interface globalProps {
   readonly?: boolean;
   depLibs?: Array<depLibsType>;
+  showCode?: boolean;
   layout?: 'horizontal' | 'vertical';
 }
 
-const defineImport = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js';
+// const defineImport = 'https://unpkg.com/es-module-shims@0.10.1/dist/es-module-shims.min.js';
+// const defineDep: { [key in string]: string } = {
+//   vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
+// };
+// 
+
+const defineImport = new URL('./deps/es-module-shims.min.js', import.meta.url).href
 const defineDep: { [key in string]: string } = {
-  vue: 'https://unpkg.com/@vue/runtime-dom@3.2.31/dist/runtime-dom.esm-browser.js',
+  vue: new URL('./deps/vue-runtime-dom.esm-browser.js', import.meta.url).href
 };
 
 const store = inject<Store>('store');
@@ -29,7 +37,20 @@ const store = inject<Store>('store');
 const globalProp = inject<globalProps>('globalProps');
 const iframe = ref<HTMLIFrameElement>()
 
-onMounted(() => setIframe());
+const iframeWidth = ref(0);
+
+window.addEventListener('resize', debounce(() => {
+  if (iframeWidth.value !== iframe?.value?.offsetWidth) {
+    iframeWidth.value = iframe?.value?.offsetWidth || 0;
+    setHTML(iframe);
+  }
+}, 20));
+
+const isQuasar = ref(false)
+onMounted(() => {
+  iframeWidth.value = iframe?.value?.offsetWidth || 0;
+  setIframe()
+});
 
 watch(
   () => store!.state.file.compiled.js,
@@ -55,6 +76,9 @@ function setIframe() {
       }
       if (lib.type === 'js') {
         if ( lib.url) {
+          if (lib.name === 'quasar') {
+            isQuasar.value = true
+          }
           defineDep[lib.name] = lib.url;
         } else if ( lib.code) {
           const blob = new Blob([
@@ -74,7 +98,12 @@ function setIframe() {
                 <script async src='${defineImport}'><\/script>
                 <script type="importmap" crossorigin="anonymous">{"imports":${JSON.stringify(defineDep)}}<\/script>
                 ${stylesTags!.join('\n')}
-                <style type='text/css'>#app{overflow:auto}<\/style>
+                <style type='text/css'>
+                  html{overflow:hidden}
+                  #app{overflow:auto;padding:10px;height:auto;width:100%;}
+                  #app>*{margin:10px 0 10px 10px;}
+                  *{margin: 0;padding: 0;}
+                </style>
               </head>
               <body id='body'>
                 <div>
@@ -94,14 +123,23 @@ function setIframe() {
 function getScript(script?: string) {
   return ` 
     ${script}
-      import { createApp as _createApp } from 'vue';
+      import { createApp as _createApp,nextTick as _nextTick } from 'vue';
       const AppComponent =__sfc__;
       AppComponent.name = 'Repl';
       const app = (window.__app__ = _createApp(AppComponent));
+      ${isQuasar.value ? `import { Quasar } from 'quasar'
+      app.use(Quasar, {
+        plugins: {}, // import Quasar plugins and add here
+      })` : ''}
+      window.localStorage.setItem('VueRunningAppHeight',"0");
+      _nextTick(()=>{
+        const contentHeight = document.getElementById('app').offsetHeight;
+        window.localStorage.setItem('VueRunningAppHeight',contentHeight.toString());
+      })
       app.config.unwrapInjectedRef = true;
       app.config.errorHandler = (e) => console.error(e)
       app.mount('#app')
-      `;
+      `
 }
 // 设置html
 function setHTML(iframe: Ref<HTMLIFrameElement | undefined>) {
@@ -145,10 +183,4 @@ function setHTML(iframe: Ref<HTMLIFrameElement | undefined>) {
   height: 100%;
   border: none;
 }
-</style>
-
-<style>
-  #app{
-    overflow: auto;
-  }
 </style>

@@ -4,7 +4,8 @@ import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
-
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import inspect from 'vite-plugin-inspect'
 export default defineConfig({
   resolve: {
     alias: {
@@ -16,8 +17,15 @@ export default defineConfig({
     Vue({
       reactivityTransform: true,
     }),
+    vueJsx(),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
+      include: [
+        /\.tsx?$/,
+        /\.ts?$/,
+        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
       imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
       dts: true,
     }),
@@ -30,5 +38,6 @@ export default defineConfig({
     Unocss({
       configFile: path.resolve(__dirname, 'uno.config.ts'),
     }),
+    inspect()
   ],
 })

@@ -41,7 +41,6 @@ Object.keys(files).forEach((key)=> {
   }
 })
 
-// 
 depLibs.push(...[{
   name: 'element-plus',
   url: 'https://cdn.jsdelivr.net/npm/element-plus@2.1.4/dist/index.full.mjs',
